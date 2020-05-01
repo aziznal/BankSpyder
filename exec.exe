@@ -1,4 +1,0 @@
-cd "C:\Users\Aziz\Desktop\Programming\Large Scale Projects\BankSpyders"
-echo Running Script
-python delete_me_later.py
-echo Script finished successfully
