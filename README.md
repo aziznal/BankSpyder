@@ -27,13 +27,13 @@
 
 - ### **_[BankSpyder.py](https://github.com/aziznal/bank_spyders/blob/master/BankSpyder.py)_**
 
-#### Main Class that subspyders will inherit from. has all the basic bellsand whistles to make programming a subspyder more straight-forward
+  Main Class that subspyders will inherit from. has all the basic bellsand whistles to make programming a subspyder more straight-forward
 
-- **_load_settings(file_path)_**
+  - **_load_settings(file_path)_**
 
     Loads the **_spyder_settings.json_** file by default. If otherwise given a filepath, it loads that instead.
 
-- **_save_settings()_**
+  - **_save_settings()_**
 
     Saves any edits in **_spyder_settings.json_**. Or, if a different file was used, it saves there instead.
 
@@ -41,55 +41,55 @@
 
 - ### **_[ResultGrapher.py](<[https://](https://github.com/aziznal/bank_spyders/blob/master/ResultGrapher.py)>)_**
 
-#### Graphs the results collected by the subspyder
+  Graphs the results collected by the subspyder
 
-- **_constructor( results_folder_path, time_interval, selected_currency )_**
+  - **_constructor( results_folder_path, time_interval, selected_currency )_**
 
-  - **_results_folder_path_**: default is '**_results/_** '
-  - **_time_interval_**: 'today' | 'more_options_in_the_future'
-  - **_selected_currency_**: default is **_'USD'_**. can be any code from the results.
+    - **_results_folder_path_**: default is '**_results/_** '
+    - **_time_interval_**: 'today' | 'more_options_in_the_future'
+    - **_selected_currency_**: default is **_'USD'_**. can be any code from the results.
 
-- **_\_\_set_axes( )_**
+    - **_\_\_set_axes( )_**
 
-  Loads data from results and assigns it to each axis in the grapher object.
+    Loads data from results and assigns it to each axis in the grapher object.
 
-- **_\_\_compare_filenames( file1, file2 )_**
+  - **_\_\_compare_filenames( file1, file2 )_**
 
-   Helper method for **_\_\_sort_files( \_list )_**
+    Helper method for **_\_\_sort_files( \_list )_**
 
-- **_\_\_sort_files( \_list )_**
+  - **_\_\_sort_files( \_list )_**
 
-  This method organizes a given list of files numerically, using bubblesort.
+    This method organizes a given list of files numerically, using bubblesort.
 
-- **_\_\_check_axes( )_**
-  Tests that all axes have the same length. otherwise raises **_AssertionError_**
+  - **_\_\_check_axes( )_**
+    Tests that all axes have the same length. otherwise raises **_AssertionError_**
 
-- **_\_\_format_timestamps( )_**
+  - **_\_\_format_timestamps( )_**
 
-  formats the timestamps loaded from the result files in way that's suitable to show on the graph axes. returns __*day*__ and **_starting_date_** which are used in the graph **_title_**
+    formats the timestamps loaded from the result files in way that's suitable to show on the graph axes. returns __*day*__ and **_starting_date_** which are used in the graph **_title_**
 
-- **_\_\_format_x_ticks( plot )_**
+  - **_\_\_format_x_ticks( plot )_**
 
-  Changes the way the x-axis labels look. see method docs for more.
+    Changes the way the x-axis labels look. see method docs for more.
 
-  - **_plot_**: current active plot.
+    - **_plot_**: current active plot.
 
-- **_\_\_annotate_plot( plot, current_index, y, x, color, bottom_offset)_**
+  - **_\_\_annotate_plot( plot, current_index, y, x, color, bottom_offset)_**
 
     Draws each point's value on top of the point.
 
-  - **_All parameters are self-explanatory or can be found in method docs_**
+    - **_All parameters are self-explanatory or can be found in method docs_**
 
-- **_\_\_format_rates_plot( plot )_**
+  - **_\_\_format_rates_plot( plot )_**
 
-  Manages the Look and Format of the rates plot
+    Manages the Look and Format of the rates plot
 
-- **_\_\_format_ratios_plot( plot )_**
+  - **_\_\_format_ratios_plot( plot )_**
 
-  Manages the Look and Format of the rates plot
+    Manages the Look and Format of the rates plot
 
-- **_create_graph( show, save )_**
+  - **_create_graph( show, save )_**
 
-  Method that creates the graph(s).
+    Method that creates the graph(s).
 
-- **_show & save:_** booleans that decide whether a graph is shown at the end of this method, or whether the graph is saved as a .png at the end of the method, respectively.
+  - **_show & save:_** booleans that decide whether a graph is shown at the end of this method, or whether the graph is saved as a .png at the end of the method, respectively.
