@@ -39,7 +39,7 @@
 
     Note: ResultGrapher will need results formatted in the pre-defined structure found [here](https://add_result_example.json_here).
 
-- ### **_[ResultGrapher.py](<[https://](https://github.com/aziznal/bank_spyders/blob/master/ResultGrapher.py)>)_**
+- ### **_[ResultGrapher.py](https://github.com/aziznal/bank_spyders/blob/master/ResultGrapher.py)_**
 
   Graphs the results collected by the subspyder
 
