@@ -1,89 +1,95 @@
 # **About the Bank Spyders project**
 
-## I created this as a basis for creating a more specialized ***sub-spyder*** for projects-to-come.
+## I created this as a basis for creating a more specialized **_sub-spyder_** for projects-to-come
 
-## Each of these projects have the following aim:
-* ### to ***scrape*** the daily exchange rates of a certain bank and save the results (to a database to-be defined in the future)
-* ### to ***graph*** the scraping results in an informative way towards the [end-goal](https://addendgoalheaderhere) of the project.
-* ### to ***email*** results that satisfy a certain criteria, defined by the [end-goal](https://addendgoalheaderhere) of the project.
+## Each of these projects aim to do the following
 
-## The End-goal(s) of all of these projects:
+- to **_scrape_** the daily exchange rates of a certain bank and save the results (to a database to-be defined in the future)
+- to **_graph_** the scraping results in an informative way towards the [end-goal](https://addendgoalheaderhere) of the project.
+- to **_email_** results that satisfy a certain criteria, defined by the [end-goal](https://addendgoalheaderhere) of the project.
 
-* ### To find a connection between the results and current real-world events.
-  * #### current real-world events is an ambiguous definition that needs to be better explained later, once enough data has been collected.
+## The End-goal(s) of all of these projects
 
-* ### To find a connection / link between the banks.
-  * #### this can be found be overlaying the graphs of multiple banks over eachother, for example.
+- To find a connection between the results and current real-world events.
 
-* ### To find a way to predict the fall or rise of prices given certain data (e.g Stock prices of some company, Tension between two major powers, etc..)
-  * #### Using my currently non-existent machine-learning / deep-learning skills, I will attempt to predict prices according to the criteria of the previous two conditions.
+  - current real-world events is an ambiguous definition that needs to be better explained later, once enough data has been collected.
+
+- To find a connection / link between the banks.
+
+  - this can be found be overlaying the graphs of multiple banks over eachother, for example.
+
+- To find a way to predict the fall or rise of prices given certain data (e.g Stock prices of some company, Tension between two major powers, etc..)
+  - Using my currently non-existent machine-learning / deep-learning skills, I will attempt to predict prices according to the criteria of the previous two conditions.
 
 ---
 
-## **Details about each file**:
+## **Details about each file:**
 
-* ### ***[BankSpyder.py](https://github.com/aziznal/bank_spyders/blob/master/BankSpyder.py)***
-    #### Main Class that subspyders will inherit from. has all the basic bells and whistles to make programming a subspyder more straight-forward.
+- ### **_[BankSpyder.py](https://github.com/aziznal/bank_spyders/blob/master/BankSpyder.py)_**
 
-    * ***load_settings(file_path)***
-        
-        Loads the ***spyder_settings.json*** file by default. If otherwise given a filepath, it loads that instead.
+#### Main Class that subspyders will inherit from. has all the basic bellsand whistles to make programming a subspyder more straight-forward
 
-    * ***save_settings()***
+- **_load_settings(file_path)_**
 
-        Saves any edits in ***spyder_settings.json***. Or, if a different file was used, it saves there instead.
+    Loads the **_spyder_settings.json_** file by default. If otherwise given a filepath, it loads that instead.
 
-    #### Note: ResultGrapher will need results formatted in the pre-defined structure found [here](https://add_result_example.json_here).
+- **_save_settings()_**
 
-* ### ***[ResultGrapher.py]([https://](https://github.com/aziznal/bank_spyders/blob/master/ResultGrapher.py))***
-    #### Graphs the results collected by the subspyder.
+    Saves any edits in **_spyder_settings.json_**. Or, if a different file was used, it saves there instead.
 
-    * ***constructor( results_folder_path, time_interval, selected_currency )***
-      * ***results_folder_path***: default is ' ***results/*** '
-      * ***time_interval***: 'today' | 'more_options_in_the_future'
-      * ***selected_currency***: default is ***'USD'***. can be any code from the results.
+    Note: ResultGrapher will need results formatted in the pre-defined structure found [here](https://add_result_example.json_here).
 
-    * ***__set_axes( )***
+- ### **_[ResultGrapher.py](<[https://](https://github.com/aziznal/bank_spyders/blob/master/ResultGrapher.py)>)_**
 
-        Loads data from results and assigns it to each axis in the grapher object.
+#### Graphs the results collected by the subspyder
 
-    * ***__compare_filenames( file1, file2 )***
+- **_constructor( results_folder_path, time_interval, selected_currency )_**
 
-        Helper method for ***__sort_files( _list )***
-    
-    * ***__sort_files( _list )***
+  - **_results_folder_path_**: default is '**_results/_** '
+  - **_time_interval_**: 'today' | 'more_options_in_the_future'
+  - **_selected_currency_**: default is **_'USD'_**. can be any code from the results.
 
-        This method organizes a given list of files numerically, using bubblesort.
+  - **_\_\_set_axes( )_**
 
-    * ***__check_axes( )***
-      Tests that all axes have the same length. otherwise raises ***AssertionError***
+    Loads data from results and assigns it to each axis in the grapher object.
 
-    * ***__format_timestamps( )***
+  - **_\_\_compare_filenames( file1, file2 )_**
 
-        formats the timestamps loaded from the result files in way that's suitable to show on the graph axes. returns ***day*** and ***starting_date*** which are used in the graph ***title***
+    Helper method for **_\_\_sort_files( \_list )_**
 
-    * ***__format_x_ticks( plot )***
+  - **_\_\_sort_files( \_list )_**
 
-        Changes the way the x-axis labels look. see method docs for more.
+    This method organizes a given list of files numerically, using bubblesort.
 
-      * ***plot***: current active plot.
+  - **_\_\_check_axes( )_**
+    Tests that all axes have the same length. otherwise raises **_AssertionError_**
 
-    * ***__annotate_plot( plot, current_index, y, x, color, bottom_offset)***
-        
-        Draws each point's value on top of the point.
-        * ***All parameters are self-explanatory or can be found in method docs***
-    
-    * ***__format_rates_plot( plot )***
+  - **_\_\_format_timestamps( )_**
 
-        Manages the Look and Format of the rates plot
+    formats the timestamps loaded from the result files in way that's suitable to show on the graph axes. returns __*day*__ and **_starting_date_** which are used in the graph **_title_**
 
-    * ***__format_ratios_plot( plot )***
+  - **_\_\_format_x_ticks( plot )_**
 
-        Manages the Look and Format of the rates plot
+    Changes the way the x-axis labels look. see method docs for more.
 
-    * ***create_graph( show, save )***
+    - **_plot_**: current active plot.
 
-        Method that creates the graph(s).
-    
-      * ***show & save:*** booleans that decide whether a graph is shown at the end of this method, or whether the graph is saved as a .png at the end of the method, respectively.
-    
+  - **_\_\_annotate_plot( plot, current_index, y, x, color, bottom_offset)_**
+
+      Draws each point's value on top of the point.
+
+    - **_All parameters are self-explanatory or can be found in method docs_**
+
+  - **_\_\_format_rates_plot( plot )_**
+
+    Manages the Look and Format of the rates plot
+
+  - **_\_\_format_ratios_plot( plot )_**
+
+    Manages the Look and Format of the rates plot
+
+  - **_create_graph( show, save )_**
+
+    Method that creates the graph(s).
+
+  - **_show & save:_** booleans that decide whether a graph is shown at the end of this method, or whether the graph is saved as a .png at the end of the method, respectively.
