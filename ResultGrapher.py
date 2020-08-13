@@ -13,9 +13,13 @@ class ResultGrapher:
     def __init__(self, results_folder_path="results/", time_interval="today",
                  selected_currency='USD'):
         """
-        @param results_folder_path: <str> Absolute (or not) path to the results folder
-        @param time_period: <str> "today" | "this_month"
-        @param selected_currency: <str> Three letter currency code e.g 'USD'
+        Args:
+
+        results_folder_path: <str> Absolute (or not) path to the results folder
+
+        time_period: <str> "today" | "this_month"
+        
+        selected_currency: <str> Three letter currency code e.g 'USD'
         """
         self.result_folder_path = results_folder_path
         self.time_interval = time_interval
