@@ -37,37 +37,14 @@
 
 - ### **_[functions.py](https://github.com/aziznal/bank_spyders/blob/master/functions.py)_**
 
-  Includes general helper functions for spyders.
-
-  - **_get_current_time():_**
-
-    Returns a dict object with keys 'hour' and 'minutes'
-
-  - **_set_new_interval_( starting_hour, ending_hour, required_frequency ):**
-
-    returns the proper interval to wait between each iteration of data collecting such that the
-    required frequency of data points will be reached.
-
-  - **_save_scraped_data( spyder, results ):_**
-
-    Saves results to a file named by the spyder according to the current session's date.
-
-    This function creates the destination folder if it does not exist.
-
-  - **_numth(number):_**
-
-    Takes in 'n', returns 'n _th_'
-
-    e.g:
-
-        1  -> "1st"
-        2  -> "2nd"
-        45 -> "45th"
+  Includes general helper functions for spyders. Most have self-explanatory names
 
 - ### **_[init_script.py](https://github.com/aziznal/bank_spyders/blob/master/init_script.py)_**
 
-  Creates project settings, exec.bat, and makes sure all the essential directories are present.
+  Creates project settings, exec.bat, and makes sure all some essential directories are present
 
   Run this script to initialize project_settings.json, and create the exec.bat file to assign to an automatic process later.
 
-  This script is made to be customized for every different spyder as needed.
+  This script is made to be customized for every different spyder as needed
+
+  It's also compatible with both Linux and Windows
