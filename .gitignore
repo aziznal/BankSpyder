@@ -1,0 +1,7 @@
+# Files
+delete_me_later.py
+
+# Directories
+__pycache__
+.vscode
+venv

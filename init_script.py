@@ -17,8 +17,8 @@ def check_virtual_env(current_os):
                 warnings.warn(msg)
 
     else:
-        msg = "No virtual envrionment was found. \
-            Please create one and install all dependencies from requirements.txt"
+        msg = "No virtual environment was found."
+        msg += "\nPlease create one and install all dependencies from requirements.txt"
         raise FileNotFoundError(msg)
 
 
@@ -124,4 +124,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    input("Press Enter to exit")
