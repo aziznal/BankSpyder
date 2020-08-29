@@ -1,7 +1,13 @@
 # Files
-delete_me_later.py
+geckodriver.log
+project_settings.json
+TestSpyder.py
+exec.bat
+exec.sh
+test_script.py
 
 # Directories
 __pycache__
 .vscode
 venv
+results/*

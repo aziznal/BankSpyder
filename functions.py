@@ -1,9 +1,10 @@
 import os
 from datetime import datetime
 import json
+import sys
+from time import sleep
 
-from ResultGrapher import ResultGrapher
-from EmailSender import EmailSender
+# from EmailSender import EmailSender
 
 project_settings = {}
 
@@ -25,10 +26,56 @@ def get_current_time():
     }
 
 
+def get_current_day():
+    """
+    Returns nonabbreviated current day. e.g. saturday | monday
+    """
+    current_day = datetime.now().strftime('%A').lower()
+    return current_day
+
+
+def banks_are_closed():
+    
+    current_time = get_current_time()['hour']
+    current_day = get_current_day()
+
+    conditions = [
+        current_day == 'saturday',
+        current_day == 'sunday',
+        current_time < 9,
+        current_time > 18
+    ]
+
+    return any(conditions)
+
+
+def banks_are_open():
+    current_time = get_current_time()
+
+    conditions = [
+        current_time['hour'] < 18,
+        current_time['hour'] >= 9
+    ]
+
+    return all(conditions)
+
+
+def sleep_until_banks_open():
+    today = get_current_day()
+    current_time = get_current_time()
+
+    while banks_are_closed():
+
+        sameline_print('Waiting for banks to open..')
+        sleep(1)
+
+    return
+
+
 def create_new_loop_interval(start_hour: int, stop_hour: int, loop_count: int = 20):
     """ returns a time (in seconds) given by the formula:
 
-        [ (stop_hour - start_hour) * 60 * 60 ] / loop_count
+        [ (stop_hour - start_hour) * 60 * 60 ] // loop_count
     """
 
     total_available_time = (stop_hour - start_hour) * 60 * 60   # in seconds
@@ -97,28 +144,53 @@ def save_data(new_data):
         create_new_datafile(formatted_data, data_file)
 
 
-def create_graph(path_to_results):
-    print("\nFinished Scraping Sucessfully. Creating Graph..")
+def scrape(spyder, interval):
+    data = spyder.get_single_reading()
+    save_data(data)
 
-    grapher = ResultGrapher(results_folder_path=path_to_results)
-    path_to_graph = grapher.create_graph(save=True, show=False)
+    sleep(interval)
 
-    print("Graph Created Sucessfully")
-
-    return path_to_graph
+    spyder.refresh_page()
 
 
-def send_results_as_email(path_to_graph):
+def sameline_print(output):
+    sys.stdout.write('\r' + output)
 
-    print("\nSending Results as Email")
 
-    sender = EmailSender()
+def make_ascii_spyder():
+    print(f'''
+           ;               ,           
+         ,;                 '.         
+        ;:                   :;        
+       ::                     ::       
+       ::                     ::       
+       ':                     :        
+        :.                    :        
+     ;' ::                   ::  '     
+    .'  ';                   ;'  '.    
+   ::    :;                 ;:    ::   
+   ;      :;.             ,;:     ::   
+   :;      :;:           ,;"      ::   
+   ::.      ':;  ..,.;  ;:'     ,.;:   
+    "'"...   '::,::::: ;:   .;.;""'    
+        '"""....;:::::;,;.;"""         
+    .:::.....'"':::::::'",...;::::;.   
+   ;:' '""'"";.,;:::::;.'""""""  ':;   
+  ::'         ;::;:::;::..         :;  
+ ::         ,;:::::::::::;:..       :: 
+ ;'     ,;;:;::::::::::::::;";..    ':.
+::     ;:"  ::::::"""'::::::  ":     ::
+ :.    ::   ::::::;  :::::::   :     ; 
+  ;    ::   :::::::  :::::::   :    ;  
+   '   ::   ::::::....:::::'  ,:   '   
+    '  ::    :::::::::::::"   ::       
+       ::     ':::::::::"'    ::       
+       ':       """""""'      ::       
+        ::                   ;:        
+        ':;                 ;:"        
+-hrr-     ';              ,;'          
+            "'           '"            
+              '
 
-    sender.set_email_body("email_template.html",
-                          "I don't even know why this is here")
-    sender.set_attachment(
-        project_settings['graphing_results_path'] + path_to_graph)
+    ''')
 
-    sender.send_email()
-
-    print("Email sent successfully")
