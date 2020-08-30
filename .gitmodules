@@ -1,3 +1,3 @@
-[submodule "basic-web-scraper"]
-	path = basic-web-scraper
-	url = git@github.com:aziznal/basic-web-scraper.git
+[submodule "base_spider"]
+	path = base_spider
+	url = git@github.com:aziznal/basic-web-scraper
