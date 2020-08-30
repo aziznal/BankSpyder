@@ -1,4 +1,4 @@
-from base_spider.BasicSpider import BasicSpider
+from BasicSpider import BasicSpider
 
 
 class BankSpider(BasicSpider):
