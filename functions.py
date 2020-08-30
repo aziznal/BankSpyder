@@ -4,9 +4,21 @@ import json
 import sys
 from time import sleep
 
-# from EmailSender import EmailSender
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from CustomSpider import CustomSpider
 
 project_settings = {}
+
+
+def make_spider(url):
+    
+    options = FirefoxOptions()
+    options.headless = False
+
+    # TODO: replace with an instance of your bank spider
+    spider = CustomSpider(url=url, options=options)
+
+    return spider
 
 
 def load_project_settings():
@@ -28,7 +40,7 @@ def get_current_time():
 
 def get_current_day():
     """
-    Returns nonabbreviated current day. e.g. saturday | monday
+    Returns nonabbreviated lowercase current day. e.g. saturday | monday
     """
     current_day = datetime.now().strftime('%A').lower()
     return current_day
@@ -50,9 +62,12 @@ def banks_are_closed():
 
 
 def banks_are_open():
+    today = get_current_day()
     current_time = get_current_time()
 
     conditions = [
+        today != 'saturday',
+        today != 'sunday',
         current_time['hour'] < 18,
         current_time['hour'] >= 9
     ]
@@ -95,14 +110,7 @@ def already_exists(path_):
 
 
 def format_tuple(data):
-    """changes (1, 2, "b") into "1,2,b"
-
-    Args:
-
-    @param data (tuple): Tuple to convert into comma seperated string
-
-    Returns comma seperated string of tuple items
-    """
+    """ (1, 2, 'b') -> '1,2,b' """
     return ",".join([str(item) for item in data])
 
 
@@ -129,9 +137,9 @@ def prep_data(data):
 def save_data(new_data):
     """Appends new_data to results/results.csv.
 
-    If results.csv doesn't already exist, this function creates it and adds column names (time,buying,selling)
+    If results.csv doesn't already exist, this function creates it and adds column names (time,currency,buying,selling)
 
-    @param new_data (tuple): Tuple (time,buying,selling)
+    @param new_data (tuple): Tuple (time,currency,buying,selling)
     """
 
     data_file = project_settings['results_path']
