@@ -4,6 +4,7 @@ project_settings.json
 exec.bat
 exec.sh
 test_script.py
+.coverage
 
 # Directories
 __pycache__
