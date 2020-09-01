@@ -36,7 +36,7 @@ def run_script(spyder):
                 continue
 
             else:
-                sleep(adjust_interval)
+                sleep(adjusted_interval)
 
         except WebDriverException as e:
             print(f"\nEncountered Exception during Data Getting Stage: {e}")
