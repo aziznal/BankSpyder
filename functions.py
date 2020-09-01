@@ -5,7 +5,7 @@ import sys
 from time import sleep
 
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from CustomSpider import CustomSpider
+from BankSpider import BankSpider
 
 project_settings = {}
 
@@ -16,7 +16,7 @@ def make_spider(url):
     options.headless = False
 
     # TODO: replace with an instance of your bank spider
-    spider = CustomSpider(url=url, options=options)
+    spider = BankSpider(url=url, options=options)
 
     return spider
 
