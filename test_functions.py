@@ -40,14 +40,14 @@ def increment_current_time(current_time):
 
     return m_current_time
 
-def banks_are_closed_time_test():
-
-    current_time = get_current_time()
-    next_time = increment_current_time(current_time)
+def banks_are_closed_time_test(current_time):
+    incremented_time = increment_current_time(current_time)
 
     conditions = [
-        current_time['hour'] > next_time
+        current_time['hour'] > incremented_time
     ]
+
+    
 
 
 def banks_are_closed():
